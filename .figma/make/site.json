@@ -1,0 +1,11 @@
+{
+  "title": "GIG BOSS",
+  "description": "Helps gig drivers track earnings, expenses, and profit to understand their take-home pay and make smarter decisions about their work.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

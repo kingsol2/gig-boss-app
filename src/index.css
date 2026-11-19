@@ -1,0 +1,340 @@
+@import "tailwindcss";
+
+@theme {
+  --color-gig-black: #080808;
+  --color-gig-red: #ef233c;
+  --color-gig-green: #48ff85;
+  --color-gig-surface: #181818;
+  --color-gig-muted: #a3a3a3;
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+    background: #080808;
+    font-family:
+      Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-synthesis: none;
+    --app-height: 100dvh;
+    --shell-max-width: 768px;
+    --content-max-width: 720px;
+  }
+
+  html {
+    min-width: 320px;
+    min-height: 100%;
+    scroll-padding-top: calc(72px + env(safe-area-inset-top));
+    scroll-padding-bottom: calc(92px + env(safe-area-inset-bottom));
+    overscroll-behavior-y: none;
+    background: #050505;
+  }
+
+  body {
+    min-width: 320px;
+    min-height: 100%;
+    overflow-x: hidden;
+    overscroll-behavior-x: none;
+    background: #050505;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  #root {
+    min-height: var(--app-height);
+  }
+
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid #48ff85;
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .app-shell {
+    width: 100%;
+    max-width: var(--shell-max-width);
+    min-height: var(--app-height);
+    margin-inline: auto;
+    overflow-x: hidden;
+    background: #080808;
+    box-shadow: 0 0 80px rgb(0 0 0 / 0.55);
+  }
+
+  .app-viewport {
+    min-height: var(--app-height);
+  }
+
+  .login-safe-area {
+    height: calc(env(safe-area-inset-top, 0px) + 16px);
+    min-height: calc(env(safe-area-inset-top, 0px) + 16px);
+    flex: 0 0 auto;
+  }
+
+  .login-screen[data-embedded-preview="true"] .login-safe-area {
+    height: max(calc(env(safe-area-inset-top, 0px) + 16px), 56px);
+    min-height: max(calc(env(safe-area-inset-top, 0px) + 16px), 56px);
+  }
+
+  .login-logo-header {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  .app-header-content,
+  .page-content {
+    width: 100%;
+    max-width: var(--content-max-width);
+  }
+
+  .page-content-with-nav {
+    padding-bottom: calc(7rem + env(safe-area-inset-bottom));
+  }
+
+  .skip-link {
+    position: fixed;
+    top: max(8px, env(safe-area-inset-top));
+    left: max(8px, env(safe-area-inset-left));
+    z-index: 100;
+    transform: translateY(-160%);
+    border-radius: 10px;
+    background: #48ff85;
+    padding: 10px 14px;
+    color: #080808;
+    font-size: 14px;
+    font-weight: 800;
+  }
+
+  .skip-link:focus {
+    transform: translateY(0);
+  }
+
+  .input {
+    width: 100%;
+    min-height: 48px;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    background: #fff;
+    padding: 12px 14px;
+    color: #080808;
+    font-size: 16px;
+    transition: box-shadow 160ms ease;
+  }
+
+  .input::placeholder {
+    color: #737373;
+  }
+
+  .input:focus {
+    border-color: #48ff85;
+    outline: none;
+    box-shadow: 0 0 0 3px rgb(72 255 133 / 0.18);
+  }
+
+  .icon-button {
+    display: inline-flex;
+    min-width: 44px;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    color: inherit;
+  }
+
+  .mini-button {
+    display: inline-flex;
+    min-height: 36px;
+    align-items: center;
+    gap: 6px;
+    border-radius: 9px;
+    background: rgb(255 255 255 / 0.05);
+    padding-inline: 12px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .choice-row {
+    display: flex;
+    width: 100%;
+    min-height: 78px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    border: 1px solid rgb(255 255 255 / 0.1);
+    border-radius: 16px;
+    background: #181818;
+    padding: 16px;
+    text-align: left;
+  }
+
+  .choice-row strong,
+  .choice-row small {
+    display: block;
+  }
+
+  .choice-row small {
+    margin-top: 5px;
+    color: #777;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .choice-row-active {
+    border-color: #ef233c;
+    background: rgb(239 35 60 / 0.08);
+  }
+
+  .radio-dot {
+    display: flex;
+    width: 22px;
+    height: 22px;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #555;
+    border-radius: 999px;
+  }
+
+  .radio-dot span {
+    width: 12px;
+    height: 12px;
+    border-radius: 999px;
+    background: #ef233c;
+  }
+
+  .splash-mark {
+    animation: splash-in 500ms ease-out both;
+  }
+
+  .startup-splash-logo {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .startup-splash-logo::before {
+    position: absolute;
+    inset: -34px -46px;
+    z-index: -1;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgb(239 35 60 / 0.16), transparent 70%);
+    content: "";
+    animation: splash-pulse 1.8s ease-in-out infinite;
+  }
+
+  .startup-progress {
+    animation: load 650ms ease-out both;
+  }
+
+  .startup-content {
+    animation: app-content-in 220ms ease-out both;
+  }
+}
+
+@keyframes splash-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes load {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes splash-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes app-content-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (min-width: 800px) {
+  .app-shell {
+    min-height: calc(var(--app-height) - 32px);
+    margin-block: 16px;
+    border: 1px solid rgb(255 255 255 / 0.08);
+    border-radius: 28px;
+    overflow: clip;
+  }
+}
+
+@media (pointer: coarse) {
+  .mini-button {
+    min-height: 44px;
+  }
+}
+
+@media (forced-colors: active) {
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    forced-color-adjust: auto;
+  }
+}
+
+html[data-keyboard-open="true"] .bottom-navigation {
+  display: none;
+}
+
+html[data-keyboard-open="true"] .page-content-with-nav {
+  padding-bottom: max(2rem, env(safe-area-inset-bottom));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
